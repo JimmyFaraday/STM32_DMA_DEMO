@@ -45,7 +45,8 @@ int main(void)
   //例如同时控制LED
   while(1)
   {
-    LED1_TOGGLE
+    LED1_TOGGLE//test//////////
+
 
     Delay(0xFFFFF);
   }
