@@ -1,5 +1,5 @@
 
-// DMA ´æ´¢Æ÷µ½ÍâÉè£¨´®¿Ú£©Êı¾İ´«ÊäÊµÑé
+// DMA å­˜å‚¨å™¨åˆ°å¤–è®¾ï¼ˆä¸²å£ï¼‰æ•°æ®ä¼ è¾“å®éªŒ
 
 #include "stm32f10x.h"
 #include "bsp_usart_dma.h"
@@ -9,50 +9,50 @@ extern uint8_t SendBuff[SENDBUFF_SIZE];
 static void Delay(__IO u32 nCount); 
 
 /**
-  * @brief  Ö÷º¯Êı
-  * @param  ÎŞ
-  * @retval ÎŞ
+  * @brief  ä¸»å‡½æ•°
+  * @param  æ— 
+  * @retval æ— 
   */
 int main(void)
 {
   uint16_t i;
-  /* ³õÊ¼»¯USART */
+  /* åˆå§‹åŒ–USART */
   USART_Config(); 
 
-  /* ÅäÖÃÊ¹ÓÃDMAÄ£Ê½ */
+  /* é…ç½®ä½¿ç”¨DMAæ¨¡å¼ */
   USARTx_DMA_Config();
   
-  /* ÅäÖÃRGB²ÊÉ«µÆ */
+  /* é…ç½®RGBå½©è‰²ç¯ */
 //  LED_GPIO_Config();
 
-  printf("\r\n USART1 DMA TX ²âÊÔ \r\n");
+  printf("\r\n USART1 DMA TX æµ‹è¯• \r\n");
   
-  /*Ìî³ä½«Òª·¢ËÍµÄÊı¾İ*/
+  /*å¡«å……å°†è¦å‘é€çš„æ•°æ®*/
   for(i=0;i<SENDBUFF_SIZE;i++)
   {
     SendBuff[i]	 = 'L';
     
   }
 
-  /*ÎªÑİÊ¾DMA³ÖĞøÔËĞĞ¶øCPU»¹ÄÜ´¦ÀíÆäËüÊÂÇé£¬³ÖĞøÊ¹ÓÃDMA·¢ËÍÊı¾İ£¬Á¿·Ç³£´ó£¬
-  *³¤Ê±¼äÔËĞĞ¿ÉÄÜ»áµ¼ÖÂµçÄÔ¶Ë´®¿Úµ÷ÊÔÖúÊÖ»á¿¨ËÀ£¬Êó±êÂÒ·ÉµÄÇé¿ö£¬
-  *»ò°ÑDMAÅäÖÃÖĞµÄÑ­»·Ä£Ê½¸ÄÎªµ¥´ÎÄ£Ê½*/		
+  /*ä¸ºæ¼”ç¤ºDMAæŒç»­è¿è¡Œè€ŒCPUè¿˜èƒ½å¤„ç†å…¶å®ƒäº‹æƒ…ï¼ŒæŒç»­ä½¿ç”¨DMAå‘é€æ•°æ®ï¼Œé‡éå¸¸å¤§ï¼Œ
+  *é•¿æ—¶é—´è¿è¡Œå¯èƒ½ä¼šå¯¼è‡´ç”µè„‘ç«¯ä¸²å£è°ƒè¯•åŠ©æ‰‹ä¼šå¡æ­»ï¼Œé¼ æ ‡ä¹±é£çš„æƒ…å†µï¼Œ
+  *æˆ–æŠŠDMAé…ç½®ä¸­çš„å¾ªç¯æ¨¡å¼æ”¹ä¸ºå•æ¬¡æ¨¡å¼*/		
   
-  /* USART1 Ïò DMA·¢³öTXÇëÇó */
+  /* USART1 å‘ DMAå‘å‡ºTXè¯·æ±‚ */
   USART_DMACmd(DEBUG_USARTx, USART_DMAReq_Tx, ENABLE);
 
-  /* ´ËÊ±CPUÊÇ¿ÕÏĞµÄ£¬¿ÉÒÔ¸ÉÆäËûµÄÊÂÇé */  
-  //ÀıÈçÍ¬Ê±¿ØÖÆLED
+  /* æ­¤æ—¶CPUæ˜¯ç©ºé—²çš„ï¼Œå¯ä»¥å¹²å…¶ä»–çš„äº‹æƒ… */  
+  //ä¾‹å¦‚åŒæ—¶æ§åˆ¶LED
   while(1)
   {
     LED1_TOGGLE//test//////////
-
+    //TST
 
     Delay(0xFFFFF);
   }
 }
 
-static void Delay(__IO uint32_t nCount)	 //¼òµ¥µÄÑÓÊ±º¯Êı
+static void Delay(__IO uint32_t nCount)	 //ç®€å•çš„å»¶æ—¶å‡½æ•°
 {
 	for(; nCount != 0; nCount--);
 }
